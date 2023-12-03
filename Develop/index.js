@@ -2,39 +2,24 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require('./utils/generateMarkdown.js');
+const path = require('path');
 
 // TODO: Create an array of questions for user input
 const questions = [{
     type: 'input',
     name: 'github',
     message: 'What is your GitHub Username?',
-    validate: your_github => {
-        if (your_github) {
-            return true;
-        }
-        else {
-            console.log("Enter your GitHub username");
-            return false;
-        }
-    }
+    default: 'GitHub.com',
   },
   {
     type: 'input',
     name: 'email',
     message: 'What is your email address?',
-    validate: your_email => {
-        if (your_email) {
-            return true;
-        }
-        else {
-            console.log("Enter your email address");
-            return false;
-        }
-    }
+    default: 'email.com',
   },
   {
     type: 'input',
-    name: 'projectName',
+    name: 'title',
     message: 'What is the project name?',
     validate: your_proj => {
         if (your_proj) {
@@ -50,50 +35,37 @@ const questions = [{
     type: 'input',
     name: 'projectDesc',
     message: 'Please write a short desctiption of your project:',
-    validate: your_input => {
-        if (your_input) {
-            return true;
-        }
-        else {
-            console.log("Please provide a description of your project");
-            return false;
-        }
-    }
+    default: '',
   },
   {
     type: 'checkbox',
     name: 'license',
     message: 'Choose a license that will be used in your project:',
     choices: ['MIT', 'GNU', 'Apache', 'None of the above'],
-    validate: your_license => {
-        if (your_license) {
-            return true;
-        }
-        else {
-            console.log("Enter a title for your project");
-            return false;
-        }
-    }
   },
   {
     type: 'input',
-    name: 'command',
+    name: 'dependencies',
     message: 'What command should be run to install dependencies?',
+    default: 'npm',
   },
   {
     type: 'input',
     name: 'run',
     message: 'What command should be run to run tests?',
+    default: 'node'
   },
   {
     type: 'input',
     name: 'repo',
     message: 'What does the user need to know about using the repo?',
+    default: '',
   },
   {
     type: 'input',
     name: 'contact',
     message: 'What does the user need to know about contributing to repo?',
+    default: '',
   }
 ];
 
